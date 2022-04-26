@@ -223,6 +223,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "djvue",
     "tourist_sites",
+    "contact_us",
 
     "compressor",
 

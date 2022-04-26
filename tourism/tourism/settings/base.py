@@ -156,19 +156,16 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.template.context_processors.csrf",
                 "django.template.context_processors.tz",
-                
+
                 "django.template.context_processors.static",
 
-                
             ]
         },
     },
 ]
 
 MIDDLEWARE = [
-    
 
-    
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -178,10 +175,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 
-    
-    
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    
 
     "kn_defaults.logging.middlewares.KnLogging",
 ]
@@ -192,10 +186,11 @@ ROOT_URLCONF = "tourism.urls"
 WSGI_APPLICATION = "tourism.wsgi.application"
 
 INSTALLED_APPS = [
+    "wagtail_modeltranslation",
+    "wagtail_modeltranslation.makemigrations",
+    "wagtail_modeltranslation.migrate",
     "user.apps.UsersConfig",
 
-    
-    
     "home",
     "search",
 
@@ -213,7 +208,6 @@ INSTALLED_APPS = [
 
     "modelcluster",
     "taggit",
-    
 
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -227,16 +221,11 @@ INSTALLED_APPS = [
 
     "rest_framework",
     "rest_framework.authtoken",
-	"djvue",
-
-    
-
-    
+    "djvue",
+    "tourist_sites",
 
     "compressor",
-    
 
-    
 ]
 
 AUTH_USER_MODEL = "user.User"
@@ -265,6 +254,7 @@ AUTH_PASSWORD_VALIDATORS = [
 KN_LOG_FILE_PATH = join(DJANGO_ROOT, "logs/log.log")
 
 from kn_defaults.logging.defaults import BASE_LOGGING
+
 LOGGING = BASE_LOGGING
 
 KN_LOGGING_URL_PATTERNS = []
@@ -276,11 +266,8 @@ gettext = lambda s: s
 
 LANGUAGES = [
     ("en", gettext("en")),
-    
+    ("ar", gettext("ar")),
 ]
-
-
-
 
 # Wagtail settings
 
@@ -290,14 +277,11 @@ WAGTAIL_SITE_NAME = PROJECT_NAME
 # e.g. in notification emails. Don"t include "/admin" or a trailing slash
 BASE_URL = "http://%s" % PROJECT_DOMAIN
 
-
-
-
 # Analytics
 GOOGLE_ANALYTICS = env.str("GOOGLE_ANALYTICS", default="")
 
 CACHE_ENGINES = {
-    
+
     "dummy": {
         "BACKEND": "django.core.cache.backends.dummy.DummyCache",
     }
@@ -306,8 +290,6 @@ CACHE_ENGINES = {
 CACHES = {
     "default": CACHE_ENGINES[env.str("CACHE", default="dummy")]
 }
-
-
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (

@@ -1,25 +1,31 @@
-
 {% load static wagtailuserbar %}
-
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" class="no-js" {% if request.LANGUAGE_CODE == 'ar' %}lang="ar" dir="rtl" {% else %}lang="en" dir="ltr" {% endif %}>
     <head>
         <meta charset="utf-8" />
+<!--        <meta charset="UTF-8">-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
         <title>
             {% block title %}
                 {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- {{ site_name }}{% endif %}
-                {% endwith %}
             {% endblock %}
         </title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,700" rel="stylesheet" type="text/css">
+		<link href="{% static 'fonts/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+		<link rel="stylesheet" href="{% static 'style.css' %}">
+
+        <!--[if lt IE 9]>
+		<script src="{% static 'js/ie-support/html5.js' %}"></script>
+		<script src="{% static 'js/ie-support/respond.js' %}"></script>
+		<![endif]-->
+
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -27,15 +33,21 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
+        <div id="site-content">
+        {% include 'html_parts/header.html' %}
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
-
+        {% include 'html_parts/footer.html' %}
+        </div>
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+		<script src="{% static 'js/min/plugins-min.js' %}"></script>
+		<script src="{% static 'js/min/app-min.js' %}"></script>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
+
     </body>
 </html>

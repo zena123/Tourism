@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class TranslatedField:
-    """ translation lass for wagtail form builder fields
+    """ translation for wagtail form builder fields
             note that those fields will be generated in admin interface
     """
     def __init__(self,

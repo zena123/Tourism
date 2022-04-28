@@ -3,17 +3,18 @@ from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import MultiFieldPanel, StreamFieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
-from .blocks import HomeBannerBlock, CardBlock, AgentBlock
+from .blocks import CardBlock, AgentBlock
 from tourist_sites.models import TouristPlace
+
 
 class HomePage(Page):
     max_count = 1
     template = 'home/home_page.html'
 
     home_banner = StreamField(
-        [("BannerBlock", HomeBannerBlock())],
+        [("BannerBlock", CardBlock())],
         block_counts={
-            "BannerBlock": {"max_num": 1},
+            "BannerBlock": {"max_num": 3},
         },
         null=True,
         blank=True,
@@ -59,5 +60,3 @@ class HomePage(Page):
         ctx = super(HomePage, self).get_context(request, *args, **kwargs)
         ctx["places"] = TouristPlace.objects.filter(show_in_home=True)
         return ctx
-
-

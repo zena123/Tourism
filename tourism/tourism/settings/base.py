@@ -189,10 +189,12 @@ INSTALLED_APPS = [
     "wagtail_modeltranslation",
     "wagtail_modeltranslation.makemigrations",
     "wagtail_modeltranslation.migrate",
+    "wagtail.contrib.settings",
     "user.apps.UsersConfig",
 
     "home",
     "search",
+    "site_settings",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",

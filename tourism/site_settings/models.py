@@ -38,7 +38,9 @@ class SiteSettings(BaseSetting):
         },
     )
     footer_links = StreamField(
-        [("FooterMenuBlock", FooterMenuBlock())], null=True, blank=True
+        [("FooterMenuBlock", FooterMenuBlock())], null=True, blank=True,
+        block_counts={
+            "FooterMenuBlock": {"max_num": 1}},
 
     )
     about_us_text = models.TextField(_("About us text"), null=True, blank=True)
@@ -90,6 +92,7 @@ class SiteSettings(BaseSetting):
         )
     ]
 
+    # TODO:en/ar later
     class Meta:
         verbose_name = _("Site Setting")
         verbose_name_plural = _("Site Settings")

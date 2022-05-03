@@ -156,6 +156,7 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.template.context_processors.csrf",
                 "django.template.context_processors.tz",
+                "tourism.context_processors.global_context_processor",
 
                 "django.template.context_processors.static",
 
@@ -189,13 +190,13 @@ INSTALLED_APPS = [
     "wagtail_modeltranslation",
     "wagtail_modeltranslation.makemigrations",
     "wagtail_modeltranslation.migrate",
-    "wagtail.contrib.settings",
     "user.apps.UsersConfig",
 
     "home",
     "search",
     "site_settings",
     "wagtail.contrib.modeladmin",
+    "wagtail.contrib.settings",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",

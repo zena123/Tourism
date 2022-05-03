@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <main class="content">
+        <div class="fullwidth-block">
+            <div class="container">
+                <div class="row" style="text-align: center">
+                    <div class="col-md-4 wow fadeInLeft">
+                        <h3>{{ settings.organization_name }}</h3>
+                        <h4>{% trans ' Thank you... We will reply ASAP' %}</h4>
+                            <a href="/" class="button"> {% trans 'back to home' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

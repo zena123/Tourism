@@ -1,31 +1,45 @@
 {% extends 'base.html' %}
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+{% load widget_tweaks %}
 
 {% block content %}
-
-
     <main class="content">
         <div class="fullwidth-block">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 wow fadeInLeft">
-                        <h4>Company Name</h4>
+                        <h4>{{ settings.organization_name }}</h4>
                         <ul class="list-fa">
-                            <li><i class="fa fa-map-marker"></i> 983 Avenue Street, New York</li>
-                            <li><i class="fa fa-phone"></i> +03934343453</li>
-                            <li><i class="fa fa-envelope"></i>contact@companyname.com</li>
+                            {% for block in settings.customer_service %}
+                            <li><i class="fa fa-map-marker"></i> {{ block.value.address }}</li>
+                            <li><i class="fa fa-phone"></i> {{ block.value.phone }}</li>
+                            <li><i class="fa fa-envelope"></i>{{ block.value.email }}</li>
+                            {% endfor %}
                         </ul>
 
-                        <form action="#" class="contact-form">
-                            <input type="text" placeholder="Your Name...">
-                            <input type="text" placeholder="Company Name...">
-                            <input type="text" placeholder="Email">
-                            <textarea name="" id="" placeholder="Message..."></textarea>
-                            <input type="submit" class="button" value="Send Message">
+                        <form action="" method="post" class="contact-form">
+                            {% csrf_token %}
+                            {% csrf_token %}
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% for field in form.visible_fields %}
+                            <div class="form-group">
+                                <label class="control-label">{{ field.label }}</label>
+                                <div> {% render_field field class+="form-control" %}</div>
+                            </div>
+                            {% endfor %}
+                            <button type="submit" class="button">{% trans 'Send Message' %}</button>
                         </form>
                     </div>
                     <div class="col-md-7 col-md-push-1 wow fadeInRight">
                         <div class="map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3029.2188753874375!2d-73.9617075!3d40.6029943!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c244f289a17b03%3A0x5108f35e55b5aa3c!2s983+Avenue+S%2C+Brooklyn%2C+NY+11223%2C+Amerika+Serikat!5e0!3m2!1sid!2sid!4v1411068708925" width="600" height="520" frameborder="0" style="border:0"></iframe>
+                            <iframe src="https://maps.google.com/?q={{ self.map_address }}&output=embed"
+                            height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
 

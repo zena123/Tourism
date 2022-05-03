@@ -45,9 +45,11 @@ class FormField(AbstractFormField):
 
 class ContactUs(AbstractEmailForm):
     max_count = 1
+    map_address = models.CharField(_("Map address"), max_length=255, blank=True, default="",
+                                   help_text=_("Input google map address"))
 
     content_panels = AbstractEmailForm.content_panels + [
-
+        FieldPanel("map_address"),
         InlinePanel("custom_form_fields", label=_("Form fields")),
         MultiFieldPanel(
             [

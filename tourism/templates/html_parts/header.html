@@ -1,29 +1,38 @@
-{% load wagtailimages_tags wagtailcore_tags %}
+{% load wagtailimages_tags wagtailcore_tags i18n%}
 <header class="site-header wow fadeInDown">
     <div class="container">
         <div class="header-content">
             <div class="branding">
                 {% image settings.logo width-100 as img %}
                 <img src="{{ img.url }}" alt="" class="logo">
-                <h1 class="site-title"><a href="index.html">{{ settings.organization_name }}</a></h1>
+                <h1 class="site-title"><a href="/">{{ settings.organization_name }}</a></h1>
                 <small class="site-description">{{ settings.organization_tagline }}</small>
             </div>
 
             <nav class="main-navigation">
                 <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                 <ul class="menu">
-                    <li class="menu-item"><a href="about-us.html">About us</a></li>
-                    <li class="menu-item"><a href="our-offer.html">Our Offer</a></li>
-                    <li class="menu-item"><a href="customer-protection.html">Customer Protection</a></li>
-                    <li class="menu-item"><a href="contact.html">Contact</a></li>
+                    {% for item in menu_items %}
+                    <li class="menu-item"><a href="{% if item.internal_page %}{% pageurl item.internal_page %}{% else %}{{ item.external_link }}{% endif %}">{{ item.name }}</a></li>
+                    {% endfor %}
+
                 </ul>
             </nav>
 
             <div class="social-links">
-                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
+                <form action="{% url 'set_language' %}" method="post"  id="language_form" >
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% csrf_token %}
+                    {% with LANGUAGE_CODE|add:"/" as language_code %}
+                        <input name="next" type="hidden" value="{{ request.path|cut:language_code }}">
+                    {% endwith %}
+                    <input name="language" type="hidden" value="" id="language">
+                    {% if LANGUAGE_CODE == 'en' %}
+                        <a href="javascript:$('#language').val('ar');$('#language_form').submit();"> العربية </a>
+                    {% else %}
+                        <a href="javascript:$('#language').val('en');$('#language_form').submit();"> English</a>
+                    {% endif %}
+                </form>
             </div>
         </div>
     </div>

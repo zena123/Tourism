@@ -779,7 +779,9 @@ table {
   margin-bottom: 20px;
 }
 .offer-item .featured-image img {
-  width: 100%;
+  /*width: 100%;*/
+  width: 300px;
+  height: 200px;
   max-width: 100%;
   display: block;
 }

@@ -27,6 +27,11 @@ class City(models.Model):
 
 
 class TouristPlace(ClusterableModel):
+    city = models.ForeignKey(
+        "City",
+        on_delete=models.CASCADE,
+        related_name="city_sites",
+    )
     title = models.CharField(_("Title"), max_length=255)
     intro_text = models.TextField(_("Introduction Text"))
     description = RichTextField(_("Description"))
@@ -39,6 +44,7 @@ class TouristPlace(ClusterableModel):
         FieldPanel("title"),
         FieldPanel("intro_text"),
         FieldPanel("description"),
+        FieldPanel("city"),
         FieldPanel("show_in_home"),
         InlinePanel("tourist_images", heading=_("Related site images"), min_num=1),
     ]

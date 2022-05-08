@@ -519,8 +519,9 @@ table {
 }
 .offer .featured-image img {
   display: block;
-  width: 100%;
-  max-width: 100%;
+  width: 600px;
+  height: 300px;
+  /*max-width: 100%;*/
 }
 .offer .entry-title {
   font-size: 16px;

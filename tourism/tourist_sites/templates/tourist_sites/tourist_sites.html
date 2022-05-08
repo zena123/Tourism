@@ -20,9 +20,10 @@
 
                 <a href="#" class=" wow fadeInRight current" data-filter="*">{% trans 'Show all' %}</a>
                 {% for city in object_list %}
-                <a href="#" class="wow fadeInRight " data-wow-delay=".2s" data-filter=".{{ city.name }}">{{ city.name }}</a>
+                <a href="#" class="wow fadeInRight" data-wow-delay=".2s" data-filter=".{{ city.name }}">{{ city.name }}</a>
                 {% endfor %}
             </div>
+{#            TODO:CHECK WOW LIBRARY#}
             <div class="filterable-items">
                 {% for city in object_list %}
                 <div class="filterable-item {{ city.name }}">

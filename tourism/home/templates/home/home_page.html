@@ -57,8 +57,7 @@
                             <figure class="featured-image"><img src="{{ img.url }}" alt=""></figure>
                             <h2 class="entry-title"><a href="javascript:void(0)">{{ place.title }}</a></h2>
                             <p>{{ place.intro_text }}</p>
-{#                            TODO: ADD DETAILS PAGE#}
-                            <a href="#" class="button">{% trans 'See details' %}</a>
+                            <a href="{% url 'tourist_sites:site-details' place.pk %}" class="button">{% trans 'See details' %}</a>
                         </article>
                     </div>
                     {% endfor %}

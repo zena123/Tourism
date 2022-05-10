@@ -35,3 +35,7 @@ class LinkBlock(blocks.StructBlock):
 
         return super(LinkBlock, self).clean(value)
 
+
+class BestTravelsBlock(blocks.StructBlock):
+    title = blocks.CharBlock(max_length=255, help_text=_("Add title"))
+    description = blocks.TextBlock(help_text=_("Add description"))

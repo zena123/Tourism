@@ -228,6 +228,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "tourist_sites",
     "contact_us",
+    "about_us",
 
     "compressor",
 

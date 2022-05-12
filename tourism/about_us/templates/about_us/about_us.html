@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<main class="content">
+    <div class="fullwidth-block">
+        <div class="container">
+            <div class="row">
+                {% for block in self.main_content %}
+                    {% image block.value.image original as img %}
+                <div class="col-md-7 wow fadeInLeft">
+                    <h2 class="section-title">{{ block.value.title }}</h2>
+                    <figure>
+                        <img src="{{ img.url }}" alt="">
+                    </figure>
+
+                   {{ block.value.description|richtext }}
+                </div>
+                {% endfor %}
+                <div class="col-md-4 col-md-push-1 wow fadeInRight">
+                    <h2 class="section-title">{% trans 'Principle' %}</h2>
+                    {% for block in self.principle %}
+                    <a href="{% if block.value.internal_page %}{% pageurl block.value.internal_page %}{% else %}{{ block.value.external_url }}{% endif %}"
+                       class="boxed-link">{{ block.value.title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fullwidth-block" data-bg-color="#f1f1f1">
+        <div class="container">
+            <h2 class="section-title">{% trans 'Our Team' %}</h2>
+            <div class="row">
+                {% for block in self.our_team %}
+                    {% image block.value.avatar width-400 as img %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                    <div class="col-md-6">
+                        <div class="team wow fadeInRight">
+                            <figure class="team-image">
+                                <img src="{{ img.url }}" alt="">
+                            </figure>
+                            <h2 class="team-name">{{ block.value.name }}</h2>
+                            <small class="team-title">{{ block.value.job }}</small>
+                            <p>{{ block.value.description }}</p>
+                        </div>
+                </div>
+                    {% else %}
+                        <div class="team wow fadeInRight">
+                            <figure class="team-image" style="position:relative">
+                                <img src="{{ img.url }}" alt="">
+                            </figure>
+                            <h2 class="team-name">{{ block.value.name }}</h2>
+                            <small class="team-title">{{ block.value.job }}</small>
+                            <p>{{ block.value.description }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="fullwidth-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 wow fadeInUp">
+                    {% for block in self.best_travel %}
+                    <h2 class="section-title">{{ block.value.title }}</h2>
+                    <p>{{ block.value.description }}</p>
+                   {% endfor %}
+                </div>
+                <div class="col-md-4 wow fadeInUp" data-wow-delay=".4s">
+                    <h2 class="section-title">{% trans 'Public relation' %}</h2>
+                    {% for block in self.public_relation %}
+                    <a href="{% if block.value.internal_page %}{% pageurl block.value.internal_page %}{% else %}{{ block.value.external_url }}{% endif %}"
+                       class="boxed-link">{{ block.value.title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main> <!-- .content -->
+
+
+{% endblock %}

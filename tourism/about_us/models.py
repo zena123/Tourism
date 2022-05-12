@@ -40,9 +40,9 @@ class AboutUS(Page):
         blank=True,
     )
     public_relation = StreamField(
-        [("BestTravelBlock", BestTravelsBlock())],
+        [("PublicRelation", LinkBlock())],
         block_counts={
-            "BestTravelBlock": {"max_num": 1},
+            "PublicRelation": {"max_num": 1},
         },
         null=True,
         blank=True,
@@ -61,6 +61,13 @@ class AboutUS(Page):
                 StreamFieldPanel("principle"),
             ],
             heading=_("principle Section"),
+            classname="collapsible collapsed",
+        ),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel("our_team"),
+            ],
+            heading=_("Our Team Section"),
             classname="collapsible collapsed",
         ),
         MultiFieldPanel(

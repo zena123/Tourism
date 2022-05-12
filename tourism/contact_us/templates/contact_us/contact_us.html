@@ -11,12 +11,11 @@
                         <h4>{{ settings.organization_name }}</h4>
                         <ul class="list-fa">
                             {% for block in settings.customer_service %}
-                            <li><i class="fa fa-map-marker"></i> {{ block.value.address }}</li>
-                            <li><i class="fa fa-phone"></i> {{ block.value.phone }}</li>
-                            <li><i class="fa fa-envelope"></i>{{ block.value.email }}</li>
+                                <li><i class="fa fa-map-marker"></i> {{ block.value.address }}</li>
+                                <li><i class="fa fa-phone"></i> {{ block.value.phone }}</li>
+                                <li><i class="fa fa-envelope"></i>{{ block.value.email }}</li>
                             {% endfor %}
                         </ul>
-
                         <form action="" method="post" class="contact-form">
                             {% csrf_token %}
                             {% csrf_token %}
@@ -28,10 +27,10 @@
                                 </div>
                             {% endif %}
                             {% for field in form.visible_fields %}
-                            <div class="form-group">
-                                <label class="control-label">{{ field.label }}</label>
-                                <div> {% render_field field class+="form-control" %}</div>
-                            </div>
+                                <div class="form-group">
+                                    <label class="control-label">{{ field.label }}</label>
+                                    <div> {% render_field field class+="form-control" %}</div>
+                                </div>
                             {% endfor %}
                             <button type="submit" class="button">{% trans 'Send Message' %}</button>
                         </form>
@@ -39,16 +38,11 @@
                     <div class="col-md-7 col-md-push-1 wow fadeInRight">
                         <div class="map">
                             <iframe src="https://maps.google.com/?q={{ self.map_address }}&output=embed"
-                            height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </main> <!-- .content -->
-
 {% endblock %}

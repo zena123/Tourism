@@ -4,20 +4,19 @@
 
 {% block body_class %}slider-collapse{% endblock %}
 {% block content %}
-
     <main class="content">
         <div class="slider">
             <ul class="slides">
                 {% for block in self.home_banner %}
                     {% image block.value.image original as img %}
-                <li data-background="{{ img.url }}" class="banner-background">
-                    <div class="container">
-                        <div class="slide-caption col-md-4">
-                            <h2 class="slide-title">{{ block.value.title }}</h2>
-                            <p>{{ block.value.description|richtext }}</p>
+                    <li data-background="{{ img.url }}" class="banner-background">
+                        <div class="container">
+                            <div class="slide-caption col-md-4">
+                                <h2 class="slide-title">{{ block.value.title }}</h2>
+                                <p>{{ block.value.description|richtext }}</p>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
                 {% endfor %}
             </ul>
             <div class="flexslider-controls">
@@ -34,14 +33,14 @@
             <div class="container">
                 <div class="row">
                     {% for block in self.home_data %}
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="feature left-icon wow fadeInLeft" data-wow-delay=".3s">
-{#                            TODO:ICON FRONT_END#}
-                            <i class="icon-ticket"></i>
-                            <h3 class="feature-title">{{ block.value.title }}</h3>
-                            <p>{{ block.value.description }}</p>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="feature left-icon wow fadeInLeft" data-wow-delay=".3s">
+                                {#                            TODO:ICON FRONT_END#}
+                                <i class="icon-ticket"></i>
+                                <h3 class="feature-title">{{ block.value.title }}</h3>
+                                <p>{{ block.value.description }}</p>
+                            </div>
                         </div>
-                    </div>
                     {% endfor %}
                 </div>
             </div>
@@ -52,14 +51,15 @@
                 <div class="row">
                     {% for place in places %}
                         {% image place.image width-400 as img %}
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <article class="offer wow bounceIn">
-                            <figure class="featured-image"><img src="{{ img.url }}" alt=""></figure>
-                            <h2 class="entry-title"><a href="javascript:void(0)">{{ place.title }}</a></h2>
-                            <p>{{ place.intro_text }}</p>
-                            <a href="{% url 'tourist_sites:site-details' place.pk %}" class="button">{% trans 'See details' %}</a>
-                        </article>
-                    </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <article class="offer wow bounceIn">
+                                <figure class="featured-image"><img src="{{ img.url }}" alt=""></figure>
+                                <h2 class="entry-title"><a href="javascript:void(0)">{{ place.title }}</a></h2>
+                                <p>{{ place.intro_text }}</p>
+                                <a href="{% url 'tourist_sites:site-details' place.pk %}"
+                                   class="button">{% trans 'See details' %}</a>
+                            </article>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
@@ -70,16 +70,16 @@
                 <div class="row">
                     {% for block in self.agents_opinions %}
                         {% image block.value.avatar width-300 as img %}
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="testimonial wow fadeInUp">
-                            <figure class="avatar"><img src="{{ img.url }}" alt=""></figure>
-                            <blockquote class="testimonial-body">
-                                <p>{{ block.value.description }}</p>
-                                <cite>{{ block.value.name }}</cite>
-                                <span>{{ block.value.job }}O</span>
-                            </blockquote>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="testimonial wow fadeInUp">
+                                <figure class="avatar"><img src="{{ img.url }}" alt=""></figure>
+                                <blockquote class="testimonial-body">
+                                    <p>{{ block.value.description }}</p>
+                                    <cite>{{ block.value.name }}</cite>
+                                    <span>{{ block.value.job }}O</span>
+                                </blockquote>
+                            </div>
                         </div>
-                    </div>
                     {% endfor %}
                 </div>
             </div>

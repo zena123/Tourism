@@ -10,7 +10,7 @@ class BannerImageBlock(blocks.StructBlock):
 # add basic data to homepage
 class CardBlock(blocks.StructBlock):
     title = blocks.CharBlock(max_length=255, help_text=_("Add title"))
-    description = blocks.TextBlock(help_text=_("Add  description"))
+    description = blocks.RichTextBlock(help_text=_("Add  description"))
     image = ImageChooserBlock(help_text=_("Add icon, image"))
 
 

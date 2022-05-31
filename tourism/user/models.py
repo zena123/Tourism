@@ -34,5 +34,4 @@ class Profile(models.Model):
     dob = models.DateField(_("Date of birth"), null=True, blank=True)
 
     def __str__(self):
-        full_name = "%s %s %s" % (self.first_name, self.middle_name, self.last_name,)
-        return full_name.strip()
+        return self.user.username

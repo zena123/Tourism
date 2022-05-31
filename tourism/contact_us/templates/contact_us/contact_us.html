@@ -18,7 +18,6 @@
                         </ul>
                         <form action="" method="post" class="contact-form">
                             {% csrf_token %}
-                            {% csrf_token %}
                             {% if form.non_field_errors %}
                                 <div class="alert alert-danger" role="alert">
                                     {% for error in form.non_field_errors %}

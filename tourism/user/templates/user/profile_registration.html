@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <main class="content">
+        <div class="fullwidth-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 wow fadeInLeft">
+                        <h4>{{ settings.organization_name }}</h4>
+                        <ul class="list-fa">
+                            {% for block in settings.customer_service %}
+                                <li><i class="fa fa-map-marker"></i> {{ block.value.address }}</li>
+                                <li><i class="fa fa-phone"></i> {{ block.value.phone }}</li>
+                                <li><i class="fa fa-envelope"></i>{{ block.value.email }}</li>
+                            {% endfor %}
+                        </ul>
+                        <validation-observer ref="form" v-slot="{ handleSubmit }" mode="lazy" >
+                    <form @submit.prevent="handleSubmit(submit)" novalidate="true" id="id-register-app">
+                    </form>
+                        </validation-observer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
